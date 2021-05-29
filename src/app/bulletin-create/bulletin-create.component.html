@@ -1,0 +1,29 @@
+<p>bulletin-create works!</p>
+
+<mat-card>
+  <form class = "login" (submit)= "onAddBulletin(postBulletin)" #postBulletin= "ngForm">
+  <mat-form-field>
+  <input required matInput type ="text" ngModel name="enteredUserName" placeholder="userName" minlength="3" #enteredUserName= "ngModel"/>
+  <mat-error *ngIf= "enteredUserName.invalid">{{enteredUserNameError}}</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+  <input required matInput type ="email" ng-pattern= "^[\w-\.]+@([\w-]+\.)+[\w-]{2.4}$" ngModel name="enteredEmail" placeholder="emailAddress" #enteredEmail= "ngModel"/>
+  <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+  <textarea required matInput rows="6" ngModel name="enteredBulletin" placeholder="bulletinDetails" maxlength="50" #enteredBulletin= "ngModel"></textarea>
+  <mat-error *ngIf= "enteredBulletin.invalid">{{enteredBulletinError}}</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <button mat-raised-button type= "submit" >Post now</button>
+
+</form>
+</mat-card>
+<br>
+<br>
+
+
+

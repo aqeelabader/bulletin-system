@@ -1,0 +1,10 @@
+<mat-accordion multi="true" *ngIf= "bulletin.length >0">
+  <mat-expansion-panel *ngFor= "let post of bulletin">
+    <mat-expansion-panel-header>
+      {{post.userName}}
+    </mat-expansion-panel-header>
+    {{post.emailAddress}}
+    {{post.bulletinDetails}}
+  </mat-expansion-panel>
+</mat-accordion>
+<p *ngIf= "bulletin.length >=0">No orders Created Yet</p>
