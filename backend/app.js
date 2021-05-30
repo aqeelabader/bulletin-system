@@ -1,30 +1,26 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const app = express();
 
-app.use('/api/bulletins',(req,res,next)=>{
-  const bulletins = [
-    {
-      id: "2jofunisr3od",
-      userName: "molly_001",
-      emailAddress: "molly@sales.com",
-      bulletinDetails: "cheese cake from server"
-    },
+app.use(bodyParser.json())
 
-    {
-      id: "2jofunisr3od",
-      userName: "molly_002",
-      emailAddress: "molly@sales.com",
-      bulletinDetails: "lemon pie from server"
-    },
-  ];
-  res.json(
-    {
-      message: 'orders retrieved successfully',
-      bulletins:bulletins
-
-    }
-  );
+app.use((reg,res,next)=>{
+  res.setHeader("Access-Control-Allow-Origin", '*');
+  res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
+  res.setHeader("Access-Control-Allow-Methods","GET","POST","OPTIONS","PATCH","DELETE");
+  next();
 });
+
+app.post('/api/bulletins',(req,res,next)=>{
+  const bulletins = req.body;
+  console.log(bulletins);
+  res.status(201).json({
+    message: 'order successfully created'
+  });
+});
+
+
+
+
 
 module.exports = app;

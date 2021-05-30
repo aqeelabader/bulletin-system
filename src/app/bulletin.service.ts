@@ -2,7 +2,7 @@ import { Bulletin } from './bulletin.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-
+import {map} from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
@@ -12,8 +12,14 @@ export class BulletinService{
 
   constructor(private http: HttpClient){}
   getBulletins(){
-    this.http.get<{message: string, bulletins: Bulletin[]}>('https://localhost:3000/api/bulletins')
-    .subscribe((bulletinsData)=>{
+    this.http.get<{bulletinsData: Bulletin[]}>('https://localhost:3000/api/bulletins')
+    .pipe(map((bulletin)=>{
+      return bulletin.bulletinsData.map((bulletins)=>{
+        return{
+          id: bulletins.id ,userName: bulletins.userName ,emailAddress: bulletins.emailAddress , bulletinDetails: bulletins.bulletinDetails
+        }
+      })
+    })).subscribe((bulletinsData)=>{
       this.bulletins = bulletinsData;
       this.updatedBulletins.next([...this.bulletins]);
     });

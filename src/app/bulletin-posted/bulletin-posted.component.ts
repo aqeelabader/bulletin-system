@@ -17,7 +17,7 @@ constructor(public bulletinService: BulletinService){}
 private bulletinsSubscription: Subscription = new Subscription ;
 
 ngOnInit(){
-this.bulletin = this.bulletinService.getBulletins();
+this.bulletinService.getBulletins();
 this.bulletinsSubscription = this.bulletinService.getPostUpdateListener()
 .subscribe((bulletin: Bulletin[]) =>{
   this.bulletin = bulletin;
