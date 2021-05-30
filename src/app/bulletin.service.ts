@@ -12,13 +12,16 @@ export class BulletinService{
 
   constructor(private http: HttpClient){}
   getBulletins(){
-    this.http.get<{bulletinsData: Bulletin[]}>('https://localhost:3000/api/bulletins')
+    this.http.get<{message: string, bulletinsData: Bulletin[]}>('https://localhost:3000/api/bulletins')
     .pipe(map((bulletin)=>{
-      return bulletin.bulletinsData.map((bulletins)=>{
+      return bulletin.bulletinsData.map(bulletins=>{
         return{
-          id: bulletins.id ,userName: bulletins.userName ,emailAddress: bulletins.emailAddress , bulletinDetails: bulletins.bulletinDetails
-        }
-      })
+          id: bulletins.id ,
+          userName: bulletins.userName ,
+          emailAddress: bulletins.emailAddress ,
+          bulletinDetails: bulletins.bulletinDetails
+        };
+      });
     })).subscribe((bulletinsData)=>{
       this.bulletins = bulletinsData;
       this.updatedBulletins.next([...this.bulletins]);
