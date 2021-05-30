@@ -23,9 +23,16 @@ this.bulletinsSubscription = this.bulletinService.getPostUpdateListener()
   this.bulletin = bulletin;
 });
 }
-ngOnDestroy(){
-this.bulletinsSubscription.unsubscribe();
+
+
+onDelete(bulletinID: string )
+{
+ this.bulletinService.deleteBulletin(bulletinID);
 }
+
+ngOnDestroy(){
+  this.bulletinsSubscription.unsubscribe();
+  }
 
 }
 

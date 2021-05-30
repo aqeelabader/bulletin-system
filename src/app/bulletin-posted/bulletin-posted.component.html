@@ -1,10 +1,16 @@
 <mat-accordion multi="true" *ngIf= "bulletin.length >0">
   <mat-expansion-panel *ngFor= "let post of bulletin">
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header
+      aria-placeholder="User Name">
       {{post.userName}}
     </mat-expansion-panel-header>
     {{post.emailAddress}}
+    <br>
     {{post.bulletinDetails}}
+    <mat-action-row>
+      <button mat-button color="primary">edit</button>
+      <button mat-button color="warn">delete</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf= "bulletin.length >=0">No orders Created Yet</p>
+<p *ngIf= "bulletin.length ==0">No orders Created Yet</p>
