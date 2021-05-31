@@ -1,5 +1,5 @@
 export interface Bulletin{
-id: String;
+_id: String;
 userName : String;
 emailAddress : String;
 bulletinDetails :String;
