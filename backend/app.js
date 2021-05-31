@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose  = require('mongoose');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const bulletinRoutes = require('./routes/bulletins');
+const userRoutes = require('./routes/user');
 const cert = fs.readFileSync('keys/certificate.pem');
 const options = {server:{sslCA: cert}};
 const app = express();
@@ -14,8 +16,7 @@ mongoose.connect("mongodb+srv://aq-admin:z6KJH6eXvmxWXluI@cluster0.wsp80.mongodb
 }).catch(()=>
 {
   console.log('apparently not')
-});
-
+},options);
 
 app.use(bodyParser.json())
 
@@ -30,33 +31,7 @@ app.use((reg,res,next)=>
  next();
 });
 
-app.post('/api/bulletins',(req,res,next)=>
-{
-  const bulletins = new Bulletin(
-    {
-      userName : req.body.userName,
-      emailAddress: req.body.emailAddress,
-      bulletinDetails: req.body.bulletinDetails
-
-    }
-    );
-
-  bulletins.save();
-  console.log(bulletins);
-  res.status(201).json({
-    message: 'order successfully created'
-  });
-});
-
-
-app.get('/api/bulletins',(req,res,next)=>{
-  Bulletin.find().then((documents)=>{
-    res.json({
-      message: 'bulletins retrieved from server successfully',
-      bulletins:documents
-    });
-  });
-});
-
+app.use("/api/bulletins", bulletinRoutes);
+app.use("/api/user",userRoutes);
 
 module.exports = app;
