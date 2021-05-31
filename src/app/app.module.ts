@@ -12,12 +12,16 @@ import { BulletinPostedComponent } from './bulletin-posted/bulletin-posted.compo
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import { LoginComponent } from './Auth/login/login.component';
+import { SignupComponent } from './Auth/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BulletinCreateComponent,
-    BulletinPostedComponent
+    BulletinPostedComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
