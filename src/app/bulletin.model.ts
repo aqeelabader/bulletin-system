@@ -1,6 +1,6 @@
 export interface Bulletin{
-_id: String;
-userName : String;
-emailAddress : String;
-bulletinDetails :String;
+id: string;
+userName : string;
+emailAddress : string;
+bulletinDetails : string;
 }

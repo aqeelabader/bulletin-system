@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class BulletinPostedComponent implements OnInit, OnDestroy{
 
-bulletin : Bulletin[] =[] ;
+bulletins : Bulletin[] =[] ;
 
 constructor(public bulletinService: BulletinService){}
 private bulletinsSubscription: Subscription = new Subscription ;
@@ -19,8 +19,8 @@ private bulletinsSubscription: Subscription = new Subscription ;
 ngOnInit(){
 this.bulletinService.getBulletins();
 this.bulletinsSubscription = this.bulletinService.getPostUpdateListener()
-.subscribe((bulletin: Bulletin[]) =>{
-  this.bulletin = bulletin;
+.subscribe((bulletins: Bulletin[]) =>{
+  this.bulletins = bulletins;
 });
 }
 

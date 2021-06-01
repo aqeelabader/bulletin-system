@@ -6,21 +6,28 @@ import {map} from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
-export class BulletinService{
+export class BulletinService
+{
   private bulletins: Bulletin [] = [];
   private updatedBulletins = new Subject<Bulletin[]>();
 
   constructor(private http: HttpClient){}
+
   getBulletins(){
-    this.http.get<{message: string,bulletinsData: Bulletin[]}>('https://localhost:3000/api/bulletins')
-    .pipe(map((bulletin)=>{
-      return bulletin.bulletinsData.map((bulletins)=>{
+    this.http.get<{message: string, bulletins:
+    any}>('https://localhost:3000/api/bulletins')
+    .pipe(map((bulletinData)=>{
+      return bulletinData.bulletins.map((bulletin: { userName: any; emailAddress: any; bulletinDetails: any; _id: any; })=>{
         return{
-          _id: bulletins._id ,userName: bulletins.userName ,emailAddress: bulletins.emailAddress , bulletinDetails: bulletins.bulletinDetails
-        }
-      })
-    })).subscribe((bulletinsData)=>{
-      this.bulletins = bulletinsData;
+          userName: bulletin.userName ,
+          emailAddress: bulletin.emailAddress ,
+          bulletinDetails: bulletin.bulletinDetails,
+          id: bulletin._id
+        };
+      });
+    }))
+    .subscribe((changedBulletins)=>{
+      this.bulletins = changedBulletins;
       this.updatedBulletins.next([...this.bulletins]);
     });
 
@@ -31,12 +38,13 @@ export class BulletinService{
 
   addBulletins(userName: string , emailAddress: string , bulletinDetails: string )
   {
-    const bulletin: Bulletin = {_id:'' , userName : userName , emailAddress : emailAddress , bulletinDetails : bulletinDetails};
-    this.http.post<{message: String, bulletinId: String} >('https://localhost:3000/api/bulletins',bulletin)
+    const bulletin: Bulletin = {id:'' , userName : userName , emailAddress : emailAddress , bulletinDetails : bulletinDetails};
+    this.http.post<{message: string, bulletinId: string}
+    >('https://localhost:3000/api/bulletins',bulletin)
     .subscribe((responseBulletinData)=>{
       console.log(responseBulletinData.message);
       const id = responseBulletinData.bulletinId;
-      bulletin._id = id;
+      bulletin.id = id;
       this.bulletins.push(bulletin);
       this.updatedBulletins.next([...this.bulletins]);     //from vid
 
@@ -44,10 +52,10 @@ export class BulletinService{
   }
 
   deleteBulletin(bulletinID: string){
-    this.http.delete('https://localhost:3000/api/bulletins' + bulletinID)
+    this.http.delete('https://localhost:3000/api/bulletins/' + bulletinID)
     .subscribe(()=>
     {
-      const updatedBulletinsDel = this.bulletins.filter(bulletin =>bulletin._id!==bulletinID);
+      const updatedBulletinsDel = this.bulletins.filter(bulletin =>bulletin.id!==bulletinID);
       this.bulletins= updatedBulletinsDel;
       this.updatedBulletins.next([...this.bulletins]);
       console.log('bulletin deleted successfully');

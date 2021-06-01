@@ -1,5 +1,5 @@
-<mat-accordion multi="true" *ngIf= "bulletin.length >0">
-  <mat-expansion-panel *ngFor= "let post of bulletin">
+<mat-accordion multi="true" *ngIf= "bulletins.length >0">
+  <mat-expansion-panel *ngFor= "let post of bulletins">
     <mat-expansion-panel-header
       aria-placeholder="User Name">
       {{post.userName}}
@@ -13,4 +13,4 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf= "bulletin.length ==0">No orders Created Yet</p>
+<p *ngIf= "bulletins.length ==0">No orders Created Yet</p>
