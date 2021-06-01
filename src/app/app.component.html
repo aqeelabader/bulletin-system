@@ -1,10 +1,12 @@
 <div class="background">
 <main>
   <div style="text-align: center;">
-  <h1>
+  <div class="header">
+    <h1>
     National Inter-Departmental Bulletin Board System
-  </h1>
-  <nav>
+  </h1></div>
+  <div>
+  <nav class="navdiv">
     <button mat-button color="primary" [routerLink]= "['/']"
     routerLinkActive= "router-link-active" >Home</button>
     <button mat-button color="primary" [routerLink]= "['/create']"
@@ -18,6 +20,7 @@
     <button mat-button color="primary" [routerLink]= "['/signup']"
     routerLinkActive= "router-link-active" >Sign Up</button>
   </nav>
+</div>
   <br>
   <router-outlet></router-outlet>
 </div>

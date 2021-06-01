@@ -10,3 +10,16 @@ main{
   background-color: rgb(110, 110, 89, 0.5);
 
 }
+
+.header {
+  padding: 10px;
+  text-align: center;
+  background: #dbd93c;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+}
+
+.navdiv{
+  padding: 3px;
+  background: rgb(206, 206, 206);
+}
