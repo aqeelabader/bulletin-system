@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth-services';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,6 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -19,13 +19,14 @@ export class SignupComponent implements OnInit {
   enteredOrderError = 'Please enter an order of no more than 50 characters';
   enteredPasswordError = 'Please enter a password that contains lower case and upper case letters and at least one number';
 
-  isLoading = 'false';
-
-  onSignup(form: NgForm){
-
-    console.log(form.value);
-
-
-
+  constructor(public authService: AuthService) {}
+ onSignup(form: NgForm)
+ {
+  if (form.invalid) {
+  return;
+ }
+  this.authService.createUser(form.value.enteredEmail,
+  form.value.enteredPassword, form.value.enteredUserName);
+  console.log(form.value);
   }
 }

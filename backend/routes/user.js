@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 const User = require('../model/user');
 
 router.post("/signup",(req,res,next)=>
@@ -11,11 +12,11 @@ router.post("/signup",(req,res,next)=>
       const user = new User(
         {
           username: req.body.username,
-          emailaddress: req.body.emailaddress,
+          email: req.body.email,
           password: hash
         });
 
-        console.log(req.body.password, req.body.emailaddress, req.body.username);
+        console.log(req.body.password, req.body.email, req.body.username);
         user
         .save()
         .then(result =>
@@ -34,6 +35,55 @@ router.post("/signup",(req,res,next)=>
                 });
             });
     });
+});
+
+router.post("/login",(req,res,next)=>
+{
+  let fetchedUser;
+
+  User.findOne({email:req.body.email})
+  .then(user=>{
+    console.log(user);
+    if(!user)
+    {
+      return res.status(401).json(
+        {
+          message: "Authentication Failed, Please try again"
+        });
+    }
+
+    fetchedUser= user;
+    return bcrypt.compare(req.body.password.user.password)
+  })
+  .then(result=>
+    {
+      console.log("2",result);
+
+      if(!result)
+      {
+        return res.status(401).json({message: "Authentication Failure"});
+
+      }
+
+      const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
+        'secret_this_should_be_longer_time_is',
+        {
+          expiresIn:'1h'
+        });
+        console.log(token);
+        res.status(200).json(
+          {
+            token:token
+          });
+    })
+    .catch(err=>
+      {
+        console.log(err);
+        return res.status(401).json(
+          {
+            message:"Authentication Failure"
+          });
+      })
 });
 
 module.exports= router;

@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Bulletin = require('../model/bulletin');
+const CheckAuth = require('../middleware/check-auth');
 
-router.post('',(req,res,next)=>
+router.post('',
+CheckAuth,
+(req,res,next)=>
 {
   const bulletins = new Bulletin(
     {
@@ -36,7 +39,7 @@ router.get('',(req,res,next)=>
   });
 });
 
-router.delete("/:id",(req,res,next)=>
+router.delete("/:id",CheckAuth, (req,res,next)=>
 {
   console.log(req,params.id);
   Bulletin.deleteOne({_id: req.params.id})

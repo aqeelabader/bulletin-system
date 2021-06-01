@@ -14,6 +14,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import { LoginComponent } from './Auth/login/login.component';
 import { SignupComponent } from './Auth/signup/signup.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor } from './Auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { SignupComponent } from './Auth/signup/signup.component';
     MatExpansionModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

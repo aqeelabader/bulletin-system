@@ -1,6 +1,6 @@
 <p>Please Sign Up </p>
 <mat-card>
-<form class = "login" name = "login" #signupForm="ngForm" >
+<form (submit)= "onSignup(signupForm)"  class = "login" name = "login" #signupForm="ngForm" >
  <br>
  <mat-form-field>
  <input matInput type ="text" ngModel name="enteredUserName"

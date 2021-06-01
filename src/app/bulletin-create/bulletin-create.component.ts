@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Bulletin} from '../bulletin.model';
 import { NgForm } from '@angular/forms';
 import { BulletinService } from '../bulletin.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bulletin-create',
@@ -20,7 +21,7 @@ export class BulletinCreateComponent implements OnInit {
   enteredBulletinError='Please enter an order of no more than 50 characters';
 
 
-  constructor(public bulletinService: BulletinService){}
+  constructor(public bulletinService: BulletinService, public route : ActivatedRoute){}
 
   onAddBulletin(Bulletinform: NgForm){
     if(Bulletinform.invalid){
@@ -30,6 +31,7 @@ export class BulletinCreateComponent implements OnInit {
     this.bulletinService.addBulletins(Bulletinform.value.enteredUserName,
       Bulletinform.value.enteredEmail, Bulletinform.value.enteredBulletin);
 
+      Bulletinform.resetForm();
   }
 
 

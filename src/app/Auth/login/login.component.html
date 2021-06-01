@@ -1,6 +1,6 @@
 <p>Please Log in </p>
 <mat-card>
-<form  class = "login" name = "login" #loginForm="ngForm" >
+<form  (submit)= "onLogin(loginForm)" class = "login" name = "login" #loginForm="ngForm" >
  <br>
  <mat-form-field>
  <input matInput type ="text" ngModel name="enteredUserName"
