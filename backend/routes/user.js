@@ -3,6 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const User = require('../model/user');
+const ExpressBrute = require('express-brute');
+
+const store = new ExpressBrute.MemoryStore();
+const bruteforce= new ExpressBrute(store);
+
 
 router.post("/signup",(req,res,next)=>
 {
@@ -37,7 +42,7 @@ router.post("/signup",(req,res,next)=>
     });
 });
 
-router.post("/login",(req,res,next)=>
+router.post("/login",bruteforce.prevent, (req,res,next)=>
 {
   let fetchedUser;
 
