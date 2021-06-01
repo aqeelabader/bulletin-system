@@ -1,9 +1,12 @@
 <br>
 <br>
 <p>Click on a Bulletin below to expand it</p>
+<!-- ALL REFERENCING for styling of components can be found in the README or supporting word document-->
+
 <br>
 <mat-accordion multi="true" *ngIf= "bulletins.length >0">
   <mat-expansion-panel *ngFor= "let post of bulletins">
+    <!-- displaying all the bulletins stored in the database -->
     <mat-expansion-panel-header
       aria-placeholder="User Name">
       {{post.userName}}
@@ -12,9 +15,10 @@
     <br>
     {{post.bulletinDetails}}
     <mat-action-row>
-      <button mat-button color="primary">edit</button>
-      <button mat-button color="warn">delete</button>
+      <button mat-button color="primary">edit</button> <!-- this doesent work as planned -->
+      <button mat-button color="warn" (click)= "onDelete(post.id)" >delete</button> <!-- this doesent work as planned -->
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf= "bulletins.length ==0">No orders Created Yet</p>
+<p *ngIf= "bulletins.length ==0">No bulletin posts Created Yet</p><!-- dissappears when bulletins are found -->
+<!--  -->

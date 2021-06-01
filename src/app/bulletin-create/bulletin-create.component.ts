@@ -16,22 +16,24 @@ export class BulletinCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+//this is just for displaying error messages
   enteredUserNameError='Please enter a user name in the correct form';
   enteredEmailError='Please enter a correctly formatted e-mail addresss ';
   enteredBulletinError='Please enter an order of no more than 50 characters';
-  //output: string;
+  //output: string; //had an error that didnt make sense
 
+    //constructor for the service, route and starting the sanitizer
   constructor(public bulletinService: BulletinService, public route : ActivatedRoute, protected sanitizer: DomSanitizer){}
 
   onAddBulletin(Bulletinform: NgForm){
     if(Bulletinform.invalid){
-      return;
+      return;//checking if the entered info is valid
     }
 
     this.bulletinService.addBulletins(Bulletinform.value.enteredUserName,
-      Bulletinform.value.enteredEmail, Bulletinform.value.enteredBulletin);
-     // this.output = (this.sanitizer.sanitize(SecurityContext.HTML, Bulletinform.value.enteredBulletin));
-      Bulletinform.resetForm();
+      Bulletinform.value.enteredEmail, Bulletinform.value.enteredBulletin);//submitting data
+     // this.output = (this.sanitizer.sanitize(SecurityContext.HTML, Bulletinform.value.enteredBulletin)); //this wasnt working for some reason
+      Bulletinform.resetForm();// clears the form for user to make another bulletin post
   }
 
 

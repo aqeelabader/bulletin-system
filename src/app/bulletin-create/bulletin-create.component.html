@@ -1,21 +1,23 @@
+<!-- ALL REFERENCING for styling of components can be found in the README or supporting word document-->
+
 <br>
 <p>Fill in the fields below and click "Post Bulletin" to create a new Bulletin post</p>
 
 <mat-card>
   <form class = "login" (submit)= "onAddBulletin(postBulletin)" #postBulletin= "ngForm">
   <mat-form-field>
-  <input required matInput type ="text" ngModel name="enteredUserName" placeholder="Please Enter Your Name" minlength="3" #enteredUserName= "ngModel"/>
-  <mat-error *ngIf= "enteredUserName.invalid">{{enteredUserNameError}}</mat-error>
+  <input required matInput type ="text" ngModel name="enteredUserName" placeholder="Please Enter Your Name" minlength="3" #enteredUserName= "ngModel"/><!-- the regex pattern specifies an acceptable input, ive set the min length to three to accomodate short names -->
+  <mat-error *ngIf= "enteredUserName.invalid">{{enteredUserNameError}}</mat-error><!--this outputs an error message if input is invalid-->
   </mat-form-field>
   <br>
   <mat-form-field>
   <input required matInput type ="text" ngModel name="enteredEmail" placeholder="Related Department" #enteredEmail= "ngModel"/>
-  <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error>
+  <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error><!--this outputs an error message if input is invalid-->
   </mat-form-field>
   <br>
   <mat-form-field>
-  <textarea required matInput rows="6" ngModel name="enteredBulletin" placeholder="Your Message" maxlength="100" #enteredBulletin= "ngModel"></textarea>
-  <mat-error *ngIf= "enteredBulletin.invalid">{{enteredBulletinError}}</mat-error>
+  <textarea required matInput rows="6" ngModel name="enteredBulletin" placeholder="Your Message" maxlength="100" #enteredBulletin= "ngModel"></textarea><!-- the maxlength is set to 100 to accomodate long messages -->
+  <mat-error *ngIf= "enteredBulletin.invalid">{{enteredBulletinError}}</mat-error><!--this outputs an error message if input is invalid-->
   </mat-form-field>
   <br>
    <!-- <p>you entered the following info: {{output}}</p>

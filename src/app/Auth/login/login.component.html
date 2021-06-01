@@ -1,3 +1,6 @@
+<!-- ALL REFERENCING for styling of components can be found in the README or supporting word document-->
+
+<!-- this is the login form -->
 <p>Please Log in </p>
 <mat-card>
 <form  (submit)= "onLogin(loginForm)" class = "login" name = "login" #loginForm="ngForm" >
@@ -8,9 +11,9 @@
  required
  minlength="3"
  pattern ="^[a-zA-Z0-9\s_-]+$"
- #enteredUserName ="ngModel"/>
+ #enteredUserName ="ngModel"/>  <!-- the regex pattern specifies an acceptable input, ive set the min length to three to accomodate short names -->
  <mat-error
-*ngIf= "enteredUserName.invalid">{{enteredUserNameError}}</mat-error>
+*ngIf= "enteredUserName.invalid">{{enteredUserNameError}}</mat-error><!--this outputs an error message if input is invalid-->
 </mat-form-field >
 <br>
  <mat-form-field>
@@ -18,16 +21,16 @@
  pattern ="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
  ngModel name ="enteredEmail"
  placeholder="Email Adrress" required
- #enteredEmail ="ngModel"/>
- <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error>
+ #enteredEmail ="ngModel"/> <!-- the regex pattern specifies an acceptable input -->
+ <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error><!--this outputs an error message if input is invalid-->
  </mat-form-field>
  <br>
  <mat-form-field>
  <input matInput type ="password" pattern ="^([a-zA-Z0-9@*#]{8,15})$"
  ngModel name ="enteredPassword"
  placeholder="Password" required
- #enteredPassword ="ngModel"/>
- <mat-error *ngIf= "enteredPassword.invalid">{{enteredPasswordError}}</mat-error>
+ #enteredPassword ="ngModel"/><!-- the regex pattern specifies an acceptable input -->
+ <mat-error *ngIf= "enteredPassword.invalid">{{enteredPasswordError}}</mat-error><!--this outputs an error message if input is invalid-->
 </mat-form-field>
  <br>
 <button mat-raised-button color="primary" type = "submit" >Login</button>

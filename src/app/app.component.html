@@ -1,17 +1,18 @@
-<div class="background">
-<main>
+<!-- ALL REFERENCING for styling of components can be found in the README or supporting word document-->
+<div class="background"><!-- creates the styling of the background -->
+<main><!--contains the actual pages -->
   <div style="text-align: center;">
   <div class="header">
     <h1>
     National Inter-Departmental Bulletin Board System
   </h1></div>
   <div>
-  <nav class="navdiv">
-    <button mat-button color="primary" [routerLink]= "['/']"
+  <nav class="navdiv"><!-- navigation to get where u need to be-->
+    <button mat-stroked-button color="primary" [routerLink]= "['/']"
     routerLinkActive= "router-link-active" >Home</button>
     <button mat-button color="primary" [routerLink]= "['/create']"
     routerLinkActive= "router-link-active" >Post Bulletin</button>
-    <button mat-button color="primary" [routerLink]= "['/create']"
+    <button mat-button color="primary" [routerLink]= "['/list']"
     routerLinkActive= "router-link-active" >Edit Posted Bulletins</button>
     <button mat-button color="primary" [routerLink]= "['/list']"
     routerLinkActive= "router-link-active" >Recent Bulletins</button>
@@ -22,7 +23,7 @@
   </nav>
 </div>
   <br>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet><!-- moves to the appropreate page using the routing based on the link clicked-->
 </div>
 </main>
 

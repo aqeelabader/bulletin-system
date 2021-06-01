@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 })
 export class BulletinPostedComponent implements OnInit, OnDestroy{
 
-bulletins : Bulletin[] =[] ;
+bulletins : Bulletin[] =[] ;//from data model
 
-constructor(public bulletinService: BulletinService){}
-private bulletinsSubscription: Subscription = new Subscription ;
+constructor(public bulletinService: BulletinService){}//constructor for the service
+private bulletinsSubscription: Subscription = new Subscription ;//this had a problem, but it appears to have fixed itself???
 
 ngOnInit(){
-this.bulletinService.getBulletins();
+this.bulletinService.getBulletins();//gets the bulletins
 this.bulletinsSubscription = this.bulletinService.getPostUpdateListener()
 .subscribe((bulletins: Bulletin[]) =>{
   this.bulletins = bulletins;
@@ -27,7 +27,7 @@ this.bulletinsSubscription = this.bulletinService.getPostUpdateListener()
 
 onDelete(bulletinID: string )
 {
- this.bulletinService.deleteBulletin(bulletinID);
+ this.bulletinService.deleteBulletin(bulletinID);//for deleting bulletins.....was working....dont know if it still works.
 }
 
 ngOnDestroy(){
