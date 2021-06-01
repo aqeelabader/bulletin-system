@@ -4,7 +4,7 @@ const Bulletin = require('../model/bulletin');
 const CheckAuth = require('../middleware/check-auth');
 
 router.post('',
-CheckAuth,
+
 (req,res,next)=>
 {
   const bulletins = new Bulletin(
