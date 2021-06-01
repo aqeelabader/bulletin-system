@@ -9,6 +9,7 @@ const options = {server:{sslCA: cert}};
 const app = express();
 const Bulletin = require('./model/bulletin');
 
+//Database connection
 mongoose.connect("mongodb+srv://aq-admin:z6KJH6eXvmxWXluI@cluster0.wsp80.mongodb.net/bulletin-system?retryWrites=true&w=majority")
 .then(()=>
 {
@@ -19,7 +20,7 @@ mongoose.connect("mongodb+srv://aq-admin:z6KJH6eXvmxWXluI@cluster0.wsp80.mongodb
 },options);
 
 app.use(bodyParser.json())
-
+//setting CORS
 app.use((reg,res,next)=>
 {
  res.setHeader("Access-Control-Allow-Origin", '*');
@@ -31,6 +32,7 @@ app.use((reg,res,next)=>
  next();
 });
 
+//routing
 app.use("/api/bulletins", bulletinRoutes);
 app.use("/api/user",userRoutes);
 

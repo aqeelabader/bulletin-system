@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {ErrorComponent} from './error.component';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor
-{
+{//just finding the error and displaying the message
  constructor(private dialog: MatDialog){}
  intercept(req: HttpRequest<any>, next: HttpHandler)
  {

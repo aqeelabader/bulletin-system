@@ -13,3 +13,4 @@ export class WelcomeComponent implements OnInit {
   }
 
 }
+//no backend logic is needed here, its just a welcome page

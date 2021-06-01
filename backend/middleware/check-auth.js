@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+//this is supposed to verify the token
 module.exports=(req,res,next)=>
 {
   try

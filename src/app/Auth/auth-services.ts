@@ -9,7 +9,7 @@ import { AuthData } from './auth-data.model';
   private token!: string;
 
   constructor(private http: HttpClient){}
-
+//creating user ...same idea as create bulletin
    createUser( email: string, password: string, username: string)
     {
       const authData: AuthData = {email:email, password:password, username:username};
@@ -20,7 +20,7 @@ import { AuthData } from './auth-data.model';
 
     }
 
-
+//this handles login by looking for the token
     login(email:string, password:string, username:string)
     {
       const authData: AuthData = {email:email, password:password, username:username};

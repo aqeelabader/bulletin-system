@@ -12,10 +12,11 @@ export class BulletinService
   private updatedBulletins = new Subject<Bulletin[]>();
 
   constructor(private http: HttpClient){}
-
+//gets the bulletins stored in the database
   getBulletins(){
     this.http.get<{message: string, bulletins:
     any}>('https://localhost:3000/api/bulletins')
+    //mapping the bulletins and subscribing
     .pipe(map((bulletinData)=>{
       return bulletinData.bulletins.map((bulletin: { userName: any; emailAddress: any; bulletinDetails: any; _id: any; })=>{
         return{
@@ -33,9 +34,9 @@ export class BulletinService
 
   }
   getPostUpdateListener(){
-    return this.updatedBulletins.asObservable();
+    return this.updatedBulletins.asObservable();//creating the observable
   }
-
+//adds bulletins to the lists
   addBulletins(userName: string , emailAddress: string , bulletinDetails: string )
   {
     const bulletin: Bulletin = {id:'' , userName : userName , emailAddress : emailAddress , bulletinDetails : bulletinDetails};
@@ -46,11 +47,11 @@ export class BulletinService
       const id = responseBulletinData.bulletinId;
       bulletin.id = id;
       this.bulletins.push(bulletin);
-      this.updatedBulletins.next([...this.bulletins]);     //from vid
+      this.updatedBulletins.next([...this.bulletins]);
 
     });
   }
-
+//deleting bulletins from the database
   deleteBulletin(bulletinID: string){
     this.http.delete('https://localhost:3000/api/bulletins/' + bulletinID)
     .subscribe(()=>
