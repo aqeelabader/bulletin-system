@@ -11,6 +11,8 @@
   </mat-form-field>
   <br>
   <mat-form-field>
+    <!-- this was originally an email field but ive changed it slightly to be more appropreate
+        whats needed so that we know what department the post came from -->
   <input required matInput type ="text" ngModel name="enteredEmail" placeholder="Related Department" #enteredEmail= "ngModel"/>
   <mat-error *ngIf= "enteredEmail.invalid">{{enteredEmailError}}</mat-error><!--this outputs an error message if input is invalid-->
   </mat-form-field>

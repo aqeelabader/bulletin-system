@@ -18,8 +18,8 @@ export class BulletinCreateComponent implements OnInit {
 
 //this is just for displaying error messages
   enteredUserNameError='Please enter a user name in the correct form';
-  enteredEmailError='Please enter a correctly formatted e-mail addresss ';
-  enteredBulletinError='Please enter an order of no more than 50 characters';
+  enteredEmailError='Please enter a department ';
+  enteredBulletinError='Please enter an order of no more than 100 characters';
   //output: string; //had an error that didnt make sense
 
     //constructor for the service, route and starting the sanitizer
