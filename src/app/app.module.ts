@@ -16,7 +16,9 @@ import { LoginComponent } from './Auth/login/login.component';
 import { SignupComponent } from './Auth/signup/signup.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './Auth/auth-interceptor';
-
+import { ErrorInterceptor } from './Error/error.interceptor';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ErrorComponent } from './Error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +37,12 @@ import { AuthInterceptor } from './Auth/auth-interceptor';
     MatCardModule,
     MatButtonModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true}],
-  bootstrap: [AppComponent]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

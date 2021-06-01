@@ -39,7 +39,7 @@ router.get('',(req,res,next)=>
   });
 });
 
-router.delete("/:id",CheckAuth, (req,res,next)=>
+router.delete("/:id", (req,res,next)=>
 {
   console.log(req,params.id);
   Bulletin.deleteOne({_id: req.params.id})
