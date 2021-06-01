@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//model for storing bulletins
 const bulletinSchema = mongoose.Schema(
 {
   userName: {type: String, required:true},

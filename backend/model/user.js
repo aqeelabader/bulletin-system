@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-
+//model for storing user data
 const userSchema = mongoose.Schema(
   {
     username: {type: String, required:true},

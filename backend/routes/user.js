@@ -4,14 +4,17 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const User = require('../model/user');
 const ExpressBrute = require('express-brute');
+//express router was imported and is being used to handle HTTP requests
 
+
+//the two lines below are just to prevent brute force attacks
 const store = new ExpressBrute.MemoryStore();
 const bruteforce= new ExpressBrute(store);
 
-
+//signing up a new user
 router.post("/signup",(req,res,next)=>
 {
-  bcrypt.hash(req.body.password,10)
+  bcrypt.hash(req.body.password,10)//hashing the password for security
   .then(hash =>
     {
       const user = new User(
@@ -23,7 +26,7 @@ router.post("/signup",(req,res,next)=>
 
         console.log(req.body.password, req.body.email, req.body.username);
         user
-        .save()
+        .save()//saves the user
         .then(result =>
           {
             res.status(201).json(
@@ -36,17 +39,18 @@ router.post("/signup",(req,res,next)=>
             {
               res.status(500).json(
                 {
-                  error: err
+                  error: err//checking to see if user is saved properly
                 });
             });
     });
 });
 
+//logging users in
 router.post("/login",bruteforce.prevent, (req,res,next)=>
 {
   let fetchedUser;
 
-  User.findOne({email:req.body.email})
+  User.findOne({email:req.body.email})//finds the user based on email
   .then(user=>{
     console.log(user);
     if(!user)
@@ -58,7 +62,7 @@ router.post("/login",bruteforce.prevent, (req,res,next)=>
     }
 
     fetchedUser= user;
-    return bcrypt.compare(req.body.password.user.password)
+    return bcrypt.compare(req.body.password.user.password)//compares the password against the saved password for that user
   })
   .then(result=>
     {
@@ -73,7 +77,7 @@ router.post("/login",bruteforce.prevent, (req,res,next)=>
       const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
         'secret_this_should_be_longer_time_is',
         {
-          expiresIn:'1h'
+          expiresIn:'1h'//sets the auto expire for token
         });
         console.log(token);
         res.status(200).json(
@@ -86,10 +90,10 @@ router.post("/login",bruteforce.prevent, (req,res,next)=>
         console.log(err);
         return res.status(401).json(
           {
-            message:"Authentication Failure"
+            message:"Authentication Failure"//catching any other error related to auth
           });
       })
 });
 
-module.exports= router;
+module.exports= router;//exports this file to be used elsewhere using the routes for specific url's
 

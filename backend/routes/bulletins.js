@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Bulletin = require('../model/bulletin');
 const CheckAuth = require('../middleware/check-auth');
+//express router was imported and is being used to handle HTTP requests
 
+//posting a new bulletin
 router.post('',
 
 (req,res,next)=>
@@ -27,7 +29,7 @@ router.post('',
   });
 
 });
-
+//retrieving bulletins from the server
 router.get('',(req,res,next)=>
 {
   Bulletin.find().then((documents)=>{
@@ -38,7 +40,7 @@ router.get('',(req,res,next)=>
       });
   });
 });
-
+//deleting bulletins from server
 router.delete("/:id", (req,res,next)=>
 {
   console.log(req,params.id);
@@ -50,5 +52,7 @@ router.delete("/:id", (req,res,next)=>
   });
 });
 
-module.exports = router;
+module.exports = router;//exports this file to be used elsewhere using the routes for specific url's
+
+
 
