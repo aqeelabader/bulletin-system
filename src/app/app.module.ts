@@ -19,13 +19,15 @@ import { AuthInterceptor } from './Auth/auth-interceptor';
 import { ErrorInterceptor } from './Error/error.interceptor';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ErrorComponent } from './Error/error.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 @NgModule({
   declarations: [
     AppComponent,
     BulletinCreateComponent,
     BulletinPostedComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

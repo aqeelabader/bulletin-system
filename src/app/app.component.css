@@ -3,4 +3,10 @@ main{
   width: 60%;
   margin: auto;
   text-align: center;
+  background-color: white;
+}
+
+.background{
+  background-color: rgb(110, 110, 89, 0.5);
+
 }
