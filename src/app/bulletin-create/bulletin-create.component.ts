@@ -20,7 +20,7 @@ export class BulletinCreateComponent implements OnInit {
   enteredUserNameError='Please enter a user name in the correct form';
   enteredEmailError='Please enter a department ';
   enteredBulletinError='Please enter an order of no more than 100 characters';
-  //output: string; //had an error that didnt make sense
+  output!: string;
 
     //constructor for the service, route and starting the sanitizer
   constructor(public bulletinService: BulletinService, public route : ActivatedRoute, protected sanitizer: DomSanitizer){}
@@ -32,7 +32,7 @@ export class BulletinCreateComponent implements OnInit {
 
     this.bulletinService.addBulletins(Bulletinform.value.enteredUserName,
       Bulletinform.value.enteredEmail, Bulletinform.value.enteredBulletin);//submitting data
-     // this.output = (this.sanitizer.sanitize(SecurityContext.HTML, Bulletinform.value.enteredBulletin)); //this wasnt working for some reason
+      //this.output = (this.sanitizer.sanitize(SecurityContext.HTML, Bulletinform.value.enteredBulletin)); //this wasnt working for some reason
       Bulletinform.resetForm();// clears the form for user to make another bulletin post
   }
 
