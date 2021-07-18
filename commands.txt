@@ -1,6 +1,4 @@
-ng serve --ssl true --ssl-cert "keys\certificate.pem" --ssl-key "keys\privatekey.pem"
-
 npm run start:server
 
 
-
+ng serve --ssl true --ssl-cert "keys\certificate.pem" --ssl-key "keys\privatekey.pem"
