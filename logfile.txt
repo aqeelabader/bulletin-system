@@ -1,0 +1,4 @@
+Database connection successfull
+User has successfully logged in
+Logged in user : aqeel@gmail.com
+aqeel  posted:  Test
