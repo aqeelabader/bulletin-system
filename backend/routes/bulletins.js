@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Bulletin = require('../model/bulletin');
 const CheckAuth = require('../middleware/check-auth');
+const fs = require('fs');
+
 //express router was imported and is being used to handle HTTP requests
 
 //posting a new bulletin
@@ -20,6 +22,7 @@ router.post('',
 
   bulletins.save().then((createdBulletin)=>
   {
+    fs.appendFileSync('logfile.txt', createdBulletin.userName+"  posted:  "+createdBulletin.bulletinDetails+"\r\n");
     console.log(createdBulletin);
     res.status(201).json({
       message: 'bulletin successfully created',

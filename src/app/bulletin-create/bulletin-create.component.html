@@ -25,11 +25,12 @@
   <mat-error *ngIf= "enteredBulletin.invalid">{{enteredBulletinError}}</mat-error><!--this outputs an error message if input is invalid-->
   </mat-form-field>
   <br>
-   <!-- <p>you entered the following info: {{output}}</p>
-            <div [innerHtml]= 'output' ></div>-->
-  <br>
-  <button mat-raised-button type= "submit" >Post Bulletin</button>
 
+  <br>
+  <button mat-raised-button type= "submit">Post Bulletin</button>
+  <br>
+  <br>
+  <p *ngIf= "showSuccessMessage">post created, go to Recent bulletins to see it</p>
 </form>
 </mat-card>
 <br>
@@ -37,6 +38,3 @@
 
 
 
-<!--
-  ng-pattern= "^[\w-\.]+@([\w-]+\.)+[\w-]{2.4}$"
--->

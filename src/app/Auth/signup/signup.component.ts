@@ -8,7 +8,7 @@ import { AuthService } from '../auth-services';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+  public showSuccessMessage = false
 
   ngOnInit(): void {
   }
@@ -31,5 +31,8 @@ export class SignupComponent implements OnInit {
   this.authService.createUser(form.value.enteredEmail,
   form.value.enteredPassword, form.value.enteredUserName);//submitting data
   console.log(form.value);
+  form.resetForm();
+  this.showSuccessMessage = true
+
   }
 }

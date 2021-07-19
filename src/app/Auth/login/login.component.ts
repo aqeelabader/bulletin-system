@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth-services';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public showSuccessMessage = false
 
 
   ngOnInit(): void {
@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(form.value.enteredEmail, form.value.enteredPassword, form.value.enteredUserName)//submitting data
-    console.log(form.value)
+    console.log(form.value);
+    form.resetForm();
+    this.showSuccessMessage = true
 
   }
 }

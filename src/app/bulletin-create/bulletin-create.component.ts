@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class BulletinCreateComponent implements OnInit {
 
-
+  public showSuccessMessage = false
 
   ngOnInit(): void {
   }
@@ -19,7 +19,7 @@ export class BulletinCreateComponent implements OnInit {
 //this is just for displaying error messages
   enteredUserNameError='Please enter a user name in the correct form';
   enteredEmailError='Please enter a department ';
-  enteredBulletinError='Please enter an order of no more than 100 characters';
+  enteredBulletinError='Please enter a bulletin of no more than 100 characters';
   output!: string;
 
     //constructor for the service, route and starting the sanitizer
@@ -34,7 +34,11 @@ export class BulletinCreateComponent implements OnInit {
       Bulletinform.value.enteredEmail, Bulletinform.value.enteredBulletin);//submitting data
       //this.output = (this.sanitizer.sanitize(SecurityContext.HTML, Bulletinform.value.enteredBulletin)); //this wasnt working for some reason
       Bulletinform.resetForm();// clears the form for user to make another bulletin post
+     this.showSuccessMessage = true
+
   }
+
+
 
 
 

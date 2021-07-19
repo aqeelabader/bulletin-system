@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const User = require('../model/user');
 const ExpressBrute = require('express-brute');
+const fs = require('fs');
+
 //express router was imported and is being used to handle HTTP requests
 
 
@@ -55,23 +57,23 @@ router.post("/login",bruteforce.prevent, (req,res,next)=>
     console.log(user);
     if(!user)
     {
+      fs.appendFileSync('logfile.txt', "There has been an authentication error\r\n");
       return res.status(401).json(
         {
           message: "Authentication Failed, Please try again"
         });
     }
-
+    fs.appendFileSync('logfile.txt', "User has successfully logged in\r\n"+"Logged in user : "+req.body.email+"\r\n");
     fetchedUser= user;
-    return bcrypt.compare(req.body.password.user.password)//compares the password against the saved password for that user
+    return bcrypt.compare(req.body.password,user.password)//compares the password against the saved password for that user
   })
   .then(result=>
     {
       console.log("2",result);
-
       if(!result)
       {
+        fs.appendFileSync('logfile.txt', "There has been an authentication error\r\n");
         return res.status(401).json({message: "Authentication Failure"});
-
       }
 
       const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
@@ -87,6 +89,7 @@ router.post("/login",bruteforce.prevent, (req,res,next)=>
     })
     .catch(err=>
       {
+        fs.appendFileSync('logfile.txt', "There has been an authentication error\r\n");
         console.log(err);
         return res.status(401).json(
           {

@@ -13,11 +13,11 @@ const Bulletin = require('./model/bulletin');
 mongoose.connect("mongodb+srv://aq-admin:z6KJH6eXvmxWXluI@cluster0.wsp80.mongodb.net/bulletin-system?retryWrites=true&w=majority")
 .then(()=>
 {
-    //fs.appendFileSync('logfile.txt', "connedted to database successfully");
-
+  fs.appendFileSync('logfile.txt', "Database connection successfull\r\n");
   console.log("connected to db successfully")
 }).catch(()=>
 {
+  fs.appendFileSync('logfile.txt', "Database connection unsuccessfull");
   console.log('apparently not')
 },options);
 
